@@ -1,0 +1,6 @@
+test/**
+test-integration/**
+node_modules/**
+.vscode-test/**
+.vscodeignore
+*.vsix

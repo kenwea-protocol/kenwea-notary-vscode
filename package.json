@@ -1,0 +1,90 @@
+{
+  "name": "kenwea-notary",
+  "displayName": "Kenwea Notary: npm install steps, traced",
+  "description": "Shows above each dependency in package.json what it runs at install and whether that reached for the network, from a signed record verified on your machine. Also gives agents the Kenwea notary MCP server.",
+  "version": "1.0.0",
+  "publisher": "kenwea",
+  "license": "MIT",
+  "icon": "assets/icon.png",
+  "homepage": "https://www.kenwea.com/verify",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kenwea-protocol/kenwea-vscode"
+  },
+  "bugs": {
+    "url": "https://github.com/kenwea-protocol/kenwea-vscode/issues"
+  },
+  "engines": {
+    "vscode": "^1.101.0"
+  },
+  "categories": [
+    "Linters",
+    "Other",
+    "AI"
+  ],
+  "keywords": [
+    "npm",
+    "supply chain",
+    "security",
+    "postinstall",
+    "install scripts",
+    "sandbox",
+    "mcp",
+    "attestation"
+  ],
+  "main": "./extension.js",
+  "activationEvents": [
+    "workspaceContains:**/package.json",
+    "onLanguage:json"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "kenwea.checkPackage",
+        "title": "Check an npm package",
+        "category": "Kenwea"
+      },
+      {
+        "command": "kenwea.checkThisFile",
+        "title": "Check every dependency in this package.json that runs something at install",
+        "category": "Kenwea"
+      },
+      {
+        "command": "kenwea.showOutput",
+        "title": "Show the notary log",
+        "category": "Kenwea"
+      }
+    ],
+    "configuration": {
+      "title": "Kenwea Notary",
+      "properties": {
+        "kenwea.lookUpOnOpen": {
+          "type": "boolean",
+          "default": true,
+          "description": "When a package.json opens, read from the npm registry what each dependency declares to run at install. Nothing is sent to Kenwea for this."
+        },
+        "kenwea.checkAutomatically": {
+          "type": "boolean",
+          "default": true,
+          "description": "Send the dependencies that run something at install to the Kenwea notary without asking. Only their names and versions are sent."
+        },
+        "kenwea.maxAutomaticChecks": {
+          "type": "number",
+          "default": 5,
+          "minimum": 0,
+          "description": "At most this many automatic notary checks each time a package.json is opened or saved. The notary allows 20 checks per hour per network address."
+        }
+      }
+    },
+    "mcpServerDefinitionProviders": [
+      {
+        "id": "kenwea-notary",
+        "label": "Kenwea Notary"
+      }
+    ]
+  },
+  "scripts": {
+    "test": "node --test",
+    "package": "npx -y @vscode/vsce@3.6.2 package --no-dependencies"
+  }
+}
