@@ -9,10 +9,10 @@
   "homepage": "https://www.kenwea.com/verify",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kenwea-protocol/kenwea-vscode"
+    "url": "https://github.com/kenwea-protocol/kenwea-notary-vscode"
   },
   "bugs": {
-    "url": "https://github.com/kenwea-protocol/kenwea-vscode/issues"
+    "url": "https://github.com/kenwea-protocol/kenwea-notary-vscode/issues"
   },
   "engines": {
     "vscode": "^1.101.0"
