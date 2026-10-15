@@ -55,7 +55,8 @@ test("resolvedVersion prefers node_modules, then the lockfile, then an exact spe
 });
 
 test("summarize reads the signed facts", () => {
-  assert.strictEqual(summarize({ installSteps: [] }).level, "nothing");
+  assert.strictEqual(summarize({ installSteps: [], reasonCode: "no_install_steps" }).level, "nothing");
+  assert.strictEqual(summarize({ installSteps: [], reasonCode: "extract_failed" }).level, "unfinished");
   assert.strictEqual(summarize({ installSteps: ["postinstall"], reasonCode: "ran_ok", observed: { dns: [], network: [] } }).level, "runs");
   const net = summarize({ installSteps: ["install"], reasonCode: "ran_tried_network", observed: { dns: ["scarf.sh"], network: [] } });
   assert.strictEqual(net.level, "network");

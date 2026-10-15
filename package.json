@@ -2,7 +2,7 @@
   "name": "kenwea-notary",
   "displayName": "Kenwea Notary: npm install steps, traced",
   "description": "Shows above each dependency in package.json what it runs at install and whether that reached for the network, from a signed record verified on your machine. Also gives agents the Kenwea notary MCP server.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "kenwea",
   "license": "MIT",
   "icon": "assets/icon.png",
