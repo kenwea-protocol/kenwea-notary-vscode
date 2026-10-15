@@ -24,12 +24,12 @@ async function run() {
     return lenses.map((l) => (l.command ? l.command.title : ""));
   };
 
-  const settled = await until(async () => (await titles()).some((t) => t.includes("reached for nothing")), 150_000);
+  const settled = await until(async () => (await titles()).some((t) => t.includes("touched nothing we watch")), 150_000);
   const seen = await titles();
   console.log("CodeLens titles:", JSON.stringify(seen));
   assert.ok(settled, `core-js was not checked and verified; lenses: ${JSON.stringify(seen)}`);
   assert.strictEqual(seen.length, 1, "left-pad runs nothing at install, so it gets no lens");
-  assert.match(seen[0], /runs postinstall at install; it finished and reached for nothing/);
+  assert.match(seen[0], /runs postinstall at install; it finished and touched nothing we watch/);
 
   const diags = vscode.languages.getDiagnostics(doc.uri);
   console.log("Diagnostics:", JSON.stringify(diags.map((d) => [d.severity, d.message])));
